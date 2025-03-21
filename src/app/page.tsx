@@ -1,7 +1,8 @@
+"use client"
 import { useEffect, useState } from "react"
 import "../app/globals.css";
 import { Card, CardContent, CardTitle, CardDescription } from "../components/ui/card";
-import Header from "@/app/components/Header";
+import Header from "@/components/Header";
 import { Link } from "lucide-react";
 
 
@@ -42,12 +43,12 @@ export default function Home(){
                                   <CardTitle className="text-xl font-bold">
                                       {post.title}
                                   </CardTitle>
-                                  <CardDescription className="text-gray-700">
-                                    {post.content}
-                                  </CardDescription>
                                   <CardContent className="text-sm text-gray-500">
-                                      {new Date(post.createdAt).toLocaleString()}
+                                  {post.content}
                                   </CardContent>
+                                  <CardDescription className="text-gray-700">
+                                    {new Date(post.createdAt).toLocaleString()}
+                                  </CardDescription>
                               </Card>
                           </li>
                       ))}
