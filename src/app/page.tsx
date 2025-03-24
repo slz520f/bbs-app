@@ -3,7 +3,10 @@ import { useEffect, useState } from "react"
 import "../app/globals.css";
 import { Card, CardContent, CardTitle, CardDescription } from "../components/ui/card";
 import Header from "@/components/Header";
-import { Link } from "lucide-react";
+
+import DeleteButton from "@/components/DeleteButton";
+import EditButton from "@/components/EditButton";
+
 
 
 interface Post{
@@ -15,6 +18,7 @@ interface Post{
 }
 
 export default function Home(){
+   
     const [posts, setPosts] = useState<Post[]>([]) //全部掲示板のリスト
     
 
@@ -28,7 +32,7 @@ export default function Home(){
         const data = await response.json()
         setPosts(data)
     }
- 
+    
     return(
         <div>
             <Header/>
@@ -49,6 +53,17 @@ export default function Home(){
                                   <CardDescription className="text-gray-700">
                                     {new Date(post.createdAt).toLocaleString()}
                                   </CardDescription>
+                                  <div className="mt-2 flex gap-2">
+                                  <EditButton
+                                    postId={post.id}
+                                    initialTitle={post.title}
+                                    initialContent={post.content}
+                                    onUpdate={fetchPosts}
+                                  />
+                                  <DeleteButton postId={post.id} onDelete={fetchPosts} />
+                                  </div>
+                                  
+                                 
                               </Card>
                           </li>
                       ))}

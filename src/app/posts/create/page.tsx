@@ -7,9 +7,10 @@ export default function CreatePost(){
     const [title, setTitle] = useState(""); // 投稿タイトルの状態
     const [content, setContent] = useState("");
     const router = useRouter();
+
     const createPost = async () => {
-    const username = "Guest"; // 仮のユーザー名
-    const response = await fetch('/api/posts', {
+      const username = "Guest"; // 仮のユーザー名
+      const response = await fetch('/api/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, content, username }),
